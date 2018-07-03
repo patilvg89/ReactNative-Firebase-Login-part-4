@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
-import {View} from 'react-native';
-import {Header} from "./src/components/common";
-import LoginForm from "./src/components/LoginForm";
+import {View, YellowBox} from 'react-native';
 import {Provider} from 'react-redux';
 import {applyMiddleware, createStore} from 'redux';
 import reducers from './src/reducers';
+import Router from "./Router";
+
+YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated'])
 
 export default class App extends Component<Props> {
 
@@ -32,9 +33,8 @@ export default class App extends Component<Props> {
         const store = createStore(reducers, applyMiddleware(ReduxThunk));
         return (
             <Provider store={store}>
-                <View>
-                    <Header headerText={'Login'}/>
-                    <LoginForm/>
+                <View style={{flex: 1}}>
+                    <Router/>
                 </View>
             </Provider>
         );
